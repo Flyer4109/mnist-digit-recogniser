@@ -1,25 +1,38 @@
 import pandas as pd
 import numpy as np
+from sklearn.preprocessing import StandardScaler
 
 
 # function used to load data and returns appropriate numpy arrays
 def load_data(k=10):
-    # read dataset from csv file and creates Pandas DataFrame
+    # read data set from csv file and creates Pandas DataFrame
     dataset = pd.read_csv("../data/train.csv")
 
     # calculates the split location between train and test data
     cut_index = int(len(dataset.index)/k)
 
-    # gets train data in numpy array in shape (num_train_data, 784)
-    training_data = np.reshape(dataset.drop(labels='label', axis=1).iloc[:-cut_index].values,
-                               (len(dataset.index)-cut_index, 784))
+    # drops labels and gets all the data in numpy array in shape (42000, 784)
+    data = dataset.drop(labels='label', axis=1).iloc[:].values
+
+    # cut data into training and testing parts using cut_index
+    training_data = data[:-cut_index]
+    testing_data = data[-cut_index:]
+
+    # initialise scaler and fit train data into scaler
+    scaler = StandardScaler().fit(training_data)
+
+    # transform train and test data into normalised forms
+    training_data = scaler.transform(training_data)
+    testing_data = scaler.transform(testing_data)
+
+    # reshape train data to (num_train_data, 784)
+    training_data = np.reshape(training_data, (len(dataset.index)-cut_index, 784))
 
     # gets train targets in numpy array in shape (num_train_targets)
     training_targets = dataset['label'][:-cut_index]
 
-    # gets test data in numpy array in shape (num_test_data, 784)
-    testing_data = np.reshape(dataset.drop(labels='label', axis=1).iloc[-cut_index:].values,
-                              (cut_index, 784))
+    # reshape test data to (num_test_data, 784)
+    testing_data = np.reshape(testing_data, (cut_index, 784))
 
     # gets test targets in numpy array in shape (num_test_targets)
     testing_targets = dataset['label'][-cut_index:]
