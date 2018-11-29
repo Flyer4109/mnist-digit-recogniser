@@ -10,16 +10,16 @@ def load_data(k=10):
     # calculates the split location between train and test data
     cut_index = int(len(dataset.index)/k)
 
-    # gets train data in numpy array in shape (num_train_data, 1, 28, 28)
+    # gets train data in numpy array in shape (num_train_data, 784)
     training_data = np.reshape(dataset.drop(labels='label', axis=1).iloc[:-cut_index].values,
-                               (len(dataset.index)-cut_index, 1, 28, 28))
+                               (len(dataset.index)-cut_index, 784))
 
     # gets train targets in numpy array in shape (num_train_targets)
     training_targets = dataset['label'][:-cut_index]
 
-    # gets test data in numpy array in shape (num_test_data, 1, 28, 28)
+    # gets test data in numpy array in shape (num_test_data, 784)
     testing_data = np.reshape(dataset.drop(labels='label', axis=1).iloc[-cut_index:].values,
-                              (cut_index, 1, 28, 28))
+                              (cut_index, 784))
 
     # gets test targets in numpy array in shape (num_test_targets)
     testing_targets = dataset['label'][-cut_index:]
