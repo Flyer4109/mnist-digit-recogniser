@@ -12,8 +12,8 @@ def load_data(k=10):
     # calculates the split location between train and test data
     cut_index = int(len(data_set.index)/k)
 
-    # drops labels and gets all the data in numpy array in shape (42000, 784)
-    data = data_set.drop(labels='label', axis=1).iloc[:].values
+    # drops labels and gets all the data as floats in numpy array in shape (42000, 784)
+    data = data_set.drop(labels='label', axis=1).iloc[:].values.astype(float)
 
     # cut data into training and testing parts using cut_index
     training_data = data[:-cut_index]
