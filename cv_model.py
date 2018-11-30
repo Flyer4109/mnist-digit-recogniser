@@ -7,7 +7,7 @@ import numpy as np
 # function that uses 10-fold cross validation to evaluate a model
 def cv_10_fold(model_info):
     # load data, targets and the splits
-    data, targets, splits = load_data(c)
+    data, targets, splits = load_data()
 
     # used for storing all model scores
     scores = []
