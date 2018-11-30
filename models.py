@@ -1,6 +1,6 @@
 from keras.layers import Dense
 
-# all NNs currently have the same optimizer, loss, metric and epochs
+# all NNs currently have the same optimizer, loss and epochs
 
 
 # first configuration with:
@@ -9,7 +9,6 @@ from keras.layers import Dense
 class NeuralNetwork:
     optimizer = 'rmsprop'
     loss = 'categorical_crossentropy'
-    metrics = ['accuracy']
     epochs = 3
 
     # function that returns the model structure
@@ -28,7 +27,6 @@ class NeuralNetwork:
 class NeuralNetwork2:
     optimizer = 'rmsprop'
     loss = 'categorical_crossentropy'
-    metrics = ['accuracy']
     epochs = 3
 
     # function that returns the model structure
@@ -47,7 +45,6 @@ class NeuralNetwork2:
 class NeuralNetwork3:
     optimizer = 'rmsprop'
     loss = 'categorical_crossentropy'
-    metrics = ['accuracy']
     epochs = 3
 
     # function that returns the model structure
