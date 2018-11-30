@@ -4,7 +4,7 @@ from keras.models import Sequential
 
 
 # function that uses 10-fold cross validation to evaluate a model
-def cv_10_fold(model_config):
+def cv_10_fold(model_info):
     # load data, targets and the splits
     data, targets, splits = load_data()
 
@@ -19,7 +19,7 @@ def cv_10_fold(model_config):
                                                                                     train_index,
                                                                                     test_index)
         # trains model and returns the score
-        score = train(model_config, train_data, train_targets, test_data, test_targets)
+        score = train(model_info, train_data, train_targets, test_data, test_targets)
         # store the score of this model
         scores.append(score)
 
@@ -31,15 +31,15 @@ def cv_10_fold(model_config):
 
 
 # function that trains a NN model with given configuration
-def train(model_config, train_data, train_targets, test_data, test_targets):
+def train(model_info, train_data, train_targets, test_data, test_targets):
     # initialise structure of model
-    model = Sequential(model_config.get_structure())
+    model = Sequential(model_info.get_structure())
 
     # configure optimiser, loss and metrics
-    model.compile(optimizer=model_config.optimizer, loss=model_config.loss, metrics=model_config.metrics)
+    model.compile(optimizer=model_info.optimizer, loss=model_info.loss, metrics=model_info.metrics)
 
     # trains the model by fit the train data and targets. configure number of epochs
-    model.fit(train_data, train_targets, epochs=model_config.epochs, verbose=0)
+    model.fit(train_data, train_targets, epochs=model_info.epochs, verbose=0)
 
     # evaluate the trained model using test parts
     score = model.evaluate(test_data, test_targets, verbose=0)
