@@ -1,6 +1,7 @@
 from data_helper import load_data, split_data_targets
 from models import NeuralNetwork, NeuralNetwork2, NeuralNetwork3
 from keras.models import Sequential
+import numpy as np
 
 
 # function that uses 10-fold cross validation to evaluate a model
@@ -24,10 +25,11 @@ def cv_10_fold(model_info):
         scores.append(score)
 
     # calculate the mean score of the all the trained models
-    cv_score = sum(scores) / len(scores)
+    cv_score = float(np.mean(scores) * 100)
+    cv_std = float(np.std(scores) * 100)
 
     # print the CV accuracy score
-    print('Final Accuracy:', str(round(cv_score*100, 3)) + '%')
+    print('Final Accuracy:', str(round(cv_score, 3)) + '%', '(+/-', str(round(cv_std, 3)) + '%)')
 
 
 # function that trains a NN model with given configuration
