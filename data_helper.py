@@ -1,45 +1,47 @@
 import pandas as pd
-import numpy as np
 from sklearn.preprocessing import StandardScaler
+from sklearn.model_selection import StratifiedKFold
 from keras.utils import to_categorical
 
 
 # function used to load data and returns appropriate numpy arrays
-def load_data(k=10):
+def load_data(k=10, shuffle=True):
     # read data set from csv file and creates Pandas DataFrame
     data_set = pd.read_csv("../data/train.csv")
-
-    # calculates the split location between train and test data
-    cut_index = int(len(data_set.index)/k)
 
     # drops labels and gets all the data as floats in numpy array in shape (42000, 784)
     data = data_set.drop(labels='label', axis=1).iloc[:].values.astype(float)
 
-    # cut data into training and testing parts using cut_index
-    training_data = data[:-cut_index]
-    testing_data = data[-cut_index:]
-
-    # initialise scaler and fit train data into scaler
-    scaler = StandardScaler().fit(training_data)
-
-    # transform train and test data into normalised forms
-    training_data = scaler.transform(training_data)
-    testing_data = scaler.transform(testing_data)
-
-    # reshape train and test data to (num_data, 784)
-    training_data = np.reshape(training_data, (len(data_set.index)-cut_index, 784))
-    testing_data = np.reshape(testing_data, (cut_index, 784))
-
     # gets all the labels in numpy array in shape (42000,)
     targets = data_set['label']
 
-    # cut targets into training and testing parts using cut_index
-    training_targets = targets[:-cut_index]
-    testing_targets = targets[-cut_index:]
+    # uses Stratified KFold and gets splits
+    strat_k_fold = StratifiedKFold(n_splits=k, shuffle=shuffle)
+    splits = strat_k_fold.split(data, targets)
 
-    # gets train and test targets in numpy array in shape (num_targets, 10)
-    training_targets = to_categorical(training_targets, num_classes=10)
-    testing_targets = to_categorical(testing_targets, num_classes=10)
+    # turns train and test targets into binary matrices in shape (num_targets, 10)
+    targets = to_categorical(targets, num_classes=10)
 
-    # returns everything needed for training and testing in 2 tuples
-    return (training_data, training_targets), (testing_data, testing_targets)
+    # returns data, targets and splits
+    return data, targets, splits
+
+
+# splits data and targets using train and test indices then normalises train and test data
+def split_data_targets(data, targets, train_index, test_index):
+    # split data into train and test then normalises the data
+    train_data, test_data = normalise(data[train_index], data[test_index])
+
+    # split targets into train and test
+    train_targets = targets[train_index]
+    test_targets = targets[test_index]
+
+    # return all train and test sets needed for training
+    return (train_data, train_targets), (test_data, test_targets)
+
+
+# normalises the data by using scaling
+def normalise(train_data, test_data):
+    # initialise scaler and fit TRAIN DATA first
+    scaler = StandardScaler().fit(train_data)
+    # then normalise both train and test data and return
+    return scaler.transform(train_data), scaler.transform(test_data)
