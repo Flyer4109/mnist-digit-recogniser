@@ -36,7 +36,7 @@ def train(model_info, train_data, train_targets, test_data, test_targets):
     model = Sequential(model_info.get_structure())
 
     # configure optimiser, loss and metrics
-    model.compile(optimizer=model_info.optimizer, loss=model_info.loss, metrics=model_info.metrics)
+    model.compile(optimizer=model_info.optimizer, loss=model_info.loss, metrics=['accuracy'])
 
     # trains the model by fit the train data and targets. configure number of epochs
     model.fit(train_data, train_targets, epochs=model_info.epochs, verbose=0)
