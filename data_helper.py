@@ -9,6 +9,9 @@ def load_data(k=10, shuffle=True):
     # read data set from csv file and creates Pandas DataFrame
     data_set = pd.read_csv("../data/train.csv")
 
+    # shuffles the DataFrame
+    data_set = data_set.sample(frac=1).reset_index(drop=True)
+
     # drops labels and gets all the data as floats in numpy array in shape (42000, 784)
     data = data_set.drop(labels='label', axis=1).iloc[:].values.astype(float)
 
