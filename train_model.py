@@ -31,7 +31,7 @@ def cv_10_fold(model_config):
 
 
 # function that trains a NN model with given configuration
-def train(model_config, training_data, training_targets, testing_data, testing_targets):
+def train(model_config, train_data, train_targets, test_data, test_targets):
     # initialise structure of model
     model = Sequential(model_config.get_structure())
 
@@ -39,10 +39,10 @@ def train(model_config, training_data, training_targets, testing_data, testing_t
     model.compile(optimizer=model_config.optimizer, loss=model_config.loss, metrics=model_config.metrics)
 
     # trains the model by fit the train data and targets. configure number of epochs
-    model.fit(training_data, training_targets, epochs=model_config.epochs, verbose=0)
+    model.fit(train_data, train_targets, epochs=model_config.epochs, verbose=0)
 
     # evaluate the trained model using test parts
-    score = model.evaluate(testing_data, testing_targets, verbose=0)
+    score = model.evaluate(test_data, test_targets, verbose=0)
 
     # print the accuracy metric score
     print('Accuracy: ' + str(round(score[1]*100, 3)) + '%')
