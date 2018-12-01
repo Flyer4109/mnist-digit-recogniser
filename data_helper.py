@@ -43,8 +43,13 @@ def split_data_targets(data, targets, train_index, test_index):
 
 
 # normalises the data by using scaling
-def normalise(train_data, test_data):
+def normalise(train_data, test_data=None):
     # initialise scaler and fit TRAIN DATA first
     scaler = StandardScaler().fit(train_data)
-    # then normalise both train and test data and return
-    return scaler.transform(train_data), scaler.transform(test_data)
+
+    if test_data is not None:
+        # normalise both train and test data and return
+        return scaler.transform(train_data), scaler.transform(test_data)
+    else:
+        # normalise train data and return
+        return scaler.transform(train_data)
