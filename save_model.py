@@ -9,7 +9,7 @@ from data_helper import normalise
 # trains a model with it's own config then it saves it to a file
 def save(model_info, model_filename):
     # load data, targets and ignore the splits
-    data, targets, _ = load_data(k=2, shuffle=False)
+    data, targets = load_data(k=1)
 
     # normalise data
     data = normalise(data)

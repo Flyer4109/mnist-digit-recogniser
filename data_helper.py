@@ -16,17 +16,22 @@ def load_data(k=10, shuffle=True):
     data = data_set.drop(labels='label', axis=1).iloc[:].values.astype(float)
 
     # gets all the labels in numpy array in shape (42000,)
-    targets = data_set['label']
+    targets_raw = data_set['label']
 
-    # uses Stratified KFold and gets splits
-    strat_k_fold = StratifiedKFold(n_splits=k, shuffle=shuffle)
-    splits = strat_k_fold.split(data, targets)
+    # turns targets into binary matrices in shape (num_targets, 10)
+    targets = to_categorical(targets_raw, num_classes=10)
 
-    # turns train and test targets into binary matrices in shape (num_targets, 10)
-    targets = to_categorical(targets, num_classes=10)
+    # if k is 1 there is no need to split
+    if k > 1:
+        # uses Stratified KFold and gets splits
+        strat_k_fold = StratifiedKFold(n_splits=k, shuffle=shuffle)
+        splits = strat_k_fold.split(data, targets_raw)
 
-    # returns data, targets and splits
-    return data, targets, splits
+        # returns data, targets and splits
+        return data, targets, splits
+
+    # returns only data and targets
+    return data, targets
 
 
 # splits data and targets using train and test indices then normalises train and test data
