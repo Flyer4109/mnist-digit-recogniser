@@ -9,7 +9,7 @@ from keras.layers import Dense
 class NeuralNetwork:
     optimizer = 'rmsprop'
     loss = 'categorical_crossentropy'
-    epochs = 3
+    epochs = 10
 
     # function that returns the model structure
     @staticmethod
