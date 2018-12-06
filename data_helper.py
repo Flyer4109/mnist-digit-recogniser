@@ -1,11 +1,12 @@
 import pandas as pd
+import numpy as np
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import StratifiedKFold
 from keras.utils import to_categorical
 
 
 # function used to load data and returns appropriate numpy arrays
-def load_data(k=10, shuffle=True):
+def load_data(k=10, shuffle=True, shape=None):
     # read data set from csv file and creates Pandas DataFrame
     data_set = pd.read_csv("../data/train.csv")
 
@@ -14,6 +15,10 @@ def load_data(k=10, shuffle=True):
 
     # drops labels and gets all the data as floats in numpy array in shape (42000, 784)
     data = data_set.drop(labels='label', axis=1).iloc[:].values.astype(float)
+
+    # reshapes the data if the shape parameter is given
+    if shape is not None:
+        data = np.reshape(data, (data.shape[0],) + shape)
 
     # gets all the labels in numpy array in shape (42000,)
     targets_raw = data_set['label']
@@ -48,13 +53,35 @@ def split_data_targets(data, targets, train_index, test_index):
 
 
 # normalises the data by using scaling
-def normalise(train_data, test_data=None):
+def normalise(train, test=None):
+    original_shape = train.shape
+    print(original_shape)
+    odd_shape = original_shape != (original_shape[0], 784)
+
+    if odd_shape:
+        train_data = np.reshape(train, (original_shape[0], 784))
+        print(train_data.shape)
+    else:
+        train_data = train
+
     # initialise scaler and fit TRAIN DATA first
     scaler = StandardScaler().fit(train_data)
 
-    if test_data is not None:
+    train_data = scaler.transform(train_data)
+
+    if odd_shape:
+        train_data = np.reshape(train_data, original_shape)
+
+    if test is not None:
+        if odd_shape:
+            test_data = np.reshape(test, (test.shape[0], 784))
+        else:
+            test_data = test
+        test_data = scaler.transform(test_data)
+        if odd_shape:
+            test_data = np.reshape(test_data, test.shape)
         # normalise both train and test data and return
-        return scaler.transform(train_data), scaler.transform(test_data)
+        return train_data, test_data
     else:
         # normalise train data and return
-        return scaler.transform(train_data)
+        return train_data

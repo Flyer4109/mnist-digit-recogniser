@@ -8,7 +8,7 @@ from data_helper import load_data, normalise
 # trains a model with it's own config then it saves it to a file
 def save(model_info, model_filename):
     # load data, targets and ignore the splits
-    data, targets = load_data(k=1)
+    data, targets = load_data(k=1, shape=model_info.input_shape)
 
     # normalise data
     data = normalise(data)
