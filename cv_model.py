@@ -4,10 +4,10 @@ from data_helper import load_data, split_data_targets
 from models import NeuralNetwork, LSTMNetwork, NeuralNetwork3
 
 
-# function that uses 10-fold cross validation to evaluate a model
-def cv_10_fold(model_info, verbose=0):
+# function that uses k-fold cross validation to evaluate a model
+def cv_k_fold(model_info, k=10, verbose=0):
     # load data, targets and the splits
-    data, targets, splits = load_data()
+    data, targets, splits = load_data(k)
 
     # used for storing all model scores
     scores = []
@@ -58,4 +58,4 @@ def train(model_info, train_data, train_targets, test_data, test_targets, verbos
 if __name__ == "__main__":
     # trains the first NN
     print('First NN')
-    cv_10_fold(NeuralNetwork())
+    cv_k_fold(NeuralNetwork())
