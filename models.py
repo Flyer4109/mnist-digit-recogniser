@@ -11,6 +11,7 @@ class NeuralNetwork:
     optimizer = 'rmsprop'
     loss = 'categorical_crossentropy'
     epochs = 10
+    input_shape = None
 
     # function that returns the model structure
     @staticmethod
@@ -29,6 +30,7 @@ class LSTMNetwork:
     optimizer = 'rmsprop'
     loss = 'categorical_crossentropy'
     epochs = 3
+    input_shape = (784, 1)
 
     # function that returns the model structure
     @staticmethod
@@ -47,6 +49,7 @@ class NeuralNetwork3:
     optimizer = 'rmsprop'
     loss = 'categorical_crossentropy'
     epochs = 3
+    input_shape = None
 
     # function that returns the model structure
     @staticmethod
