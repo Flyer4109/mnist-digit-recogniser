@@ -1,5 +1,5 @@
-from data_helper import load_data, split_data_targets
-from models import NeuralNetwork, NeuralNetwork2, NeuralNetwork3
+from code.data_helper import load_data, split_data_targets
+from code.models import NeuralNetwork, NeuralNetwork2, NeuralNetwork3
 from keras.models import Sequential
 import numpy as np
 
