@@ -7,7 +7,7 @@ from models import NeuralNetwork, LSTMNetwork, NeuralNetwork3
 # function that uses 10-fold cross validation to evaluate a model
 def cv_10_fold(model_info, verbose=0):
     # load data, targets and the splits
-    data, targets, splits = load_data(shape=model_info.input_shape)
+    data, targets, splits = load_data()
 
     # used for storing all model scores
     scores = []
@@ -18,7 +18,8 @@ def cv_10_fold(model_info, verbose=0):
         (train_data, train_targets), (test_data, test_targets) = split_data_targets(data,
                                                                                     targets,
                                                                                     train_index,
-                                                                                    test_index)
+                                                                                    test_index,
+                                                                                    model_info.input_shape)
         # trains model and returns the score
         score = train(model_info, train_data, train_targets, test_data, test_targets, verbose)
         # store the score of this model
