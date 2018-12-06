@@ -1,3 +1,4 @@
+import sys
 import numpy as np
 from keras.models import Sequential
 from data_helper import load_data, split_data_targets
@@ -54,8 +55,69 @@ def train(model_info, train_data, train_targets, test_data, test_targets, verbos
     return score[1]
 
 
-# main program trains 3 neural network models
+# main function to run when script is called
+def main():
+    # remove first system argument
+    args = sys.argv[1:]
+    # variable for number of arguments
+    num_args = len(args)
+
+    # check number of arguments passed to script is correct
+    if num_args != 1 and num_args != 3:
+        # helpful messages to help user
+        print('Error, was expecting 1 argument or 3 arguments: <model_type> [<n_splits> <verbose>]')
+        print('Found:', num_args)
+        return
+
+    # if 3 arguments are passed then check they are correct
+    if num_args == 3:
+        # second argument must be digit
+        if not args[1].isdigit():
+            print('Error, <n_splits> was expecting: k > 1')
+            print('Found:', args[1])
+            return
+        # second argument must be greater than 1
+        if int(args[1]) <= 1:
+            print('Error, <n_splits> was expecting: k > 1')
+            print('Found:', args[1])
+            return
+        # third argument must be a digit
+        if not args[2].isdigit():
+            print('Error, <verbose> was expecting: 0 (off) or 1 (on)')
+            print('Found:', args[2])
+            return
+        # third argument must be a 0 or 1
+        if int(args[2]) != 0 and int(args[2]) != 1:
+            print('Error, <verbose> was expecting: 0 (off) or 1 (on)')
+            print('Found:', args[2])
+            return
+
+    # checks if thr first argument is a valid model_type
+    if args[0] == 'nn':
+        if num_args == 3:
+            print('nn, args')
+            # cross validate neural network model with args
+            cv_k_fold(NeuralNetwork(), int(args[1]), int(args[2]))
+        else:
+            print('nn')
+            # cross validate neural network model
+            cv_k_fold(NeuralNetwork())
+    elif args[0] == 'lstm':
+        if num_args == 3:
+            print('lstm, args')
+            # cross validate LSTM network model with args
+            cv_k_fold(LSTMNetwork(), int(args[1]), int(args[2]))
+        else:
+            print('lstm')
+            # cross validate LSTM network model
+            cv_k_fold(LSTMNetwork())
+    else:
+        # first argument is not valid
+        # message displays list of possible model_types
+        print('Error, <model_type> was expecting: \'nn\', \'lstm\'')
+        print('Found: \'' + args[0] + '\'')
+
+
+# main program trains given neural network model
 if __name__ == "__main__":
-    # trains the first NN
-    print('First NN')
-    cv_k_fold(NeuralNetwork())
+    main()
