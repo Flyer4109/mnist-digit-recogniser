@@ -1,9 +1,8 @@
 import os
 import sys
-from code.data_helper import load_data
 from keras.models import Sequential
-from code.models import NeuralNetwork
-from code.data_helper import normalise
+from models import NeuralNetwork
+from data_helper import load_data, normalise
 
 
 # trains a model with it's own config then it saves it to a file
