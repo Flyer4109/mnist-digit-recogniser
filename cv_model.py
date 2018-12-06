@@ -1,7 +1,7 @@
 import numpy as np
 from keras.models import Sequential
 from data_helper import load_data, split_data_targets
-from models import NeuralNetwork, NeuralNetwork2, NeuralNetwork3
+from models import NeuralNetwork, LSTMNetwork, NeuralNetwork3
 
 
 # function that uses 10-fold cross validation to evaluate a model
