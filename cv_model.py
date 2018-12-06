@@ -5,7 +5,7 @@ import numpy as np
 
 
 # function that uses 10-fold cross validation to evaluate a model
-def cv_10_fold(model_info):
+def cv_10_fold(model_info, verbose=0):
     # load data, targets and the splits
     data, targets, splits = load_data()
 
@@ -20,7 +20,7 @@ def cv_10_fold(model_info):
                                                                                     train_index,
                                                                                     test_index)
         # trains model and returns the score
-        score = train(model_info, train_data, train_targets, test_data, test_targets)
+        score = train(model_info, train_data, train_targets, test_data, test_targets, verbose)
         # store the score of this model
         scores.append(score)
 
@@ -33,7 +33,7 @@ def cv_10_fold(model_info):
 
 
 # function that trains a NN model with given configuration
-def train(model_info, train_data, train_targets, test_data, test_targets, verbose=0):
+def train(model_info, train_data, train_targets, test_data, test_targets, verbose):
     # initialise structure of model
     model = Sequential(model_info.get_structure())
 
