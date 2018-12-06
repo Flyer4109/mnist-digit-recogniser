@@ -63,7 +63,9 @@ def normalise(train, shape, test=None):
 
         if shape is not None:
             # if the shape parameter is given then reshape train and test data
-            return np.reshape(train_data, shape), np.reshape(test_data, shape)
+            train_shape = (train.shape[0],) + shape
+            test_shape = (test.shape[0],) + shape
+            return np.reshape(train_data, train_shape), np.reshape(test_data, test_shape)
         else:
             # returns normalised train and test data
             return train_data, test_data
