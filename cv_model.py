@@ -118,6 +118,6 @@ def main():
         print('Found: \'' + args[0] + '\'')
 
 
-# main program trains given neural network model
+# main program cross validates given neural network model
 if __name__ == "__main__":
     main()
