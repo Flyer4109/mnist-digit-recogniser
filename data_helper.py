@@ -6,7 +6,7 @@ from keras.utils import to_categorical
 
 
 # function used to load data and returns appropriate numpy arrays
-def load_data(k=10, shuffle=True):
+def load_data(k, shuffle=True):
     # read data set from csv file and creates Pandas DataFrame
     data_set = pd.read_csv("../data/train.csv")
 
