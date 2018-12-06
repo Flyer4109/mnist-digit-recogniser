@@ -6,7 +6,7 @@ from keras.utils import to_categorical
 
 
 # function used to load data and returns appropriate numpy arrays
-def load_data(k, shuffle=True):
+def load_data(k):
     # read data set from csv file and creates Pandas DataFrame
     data_set = pd.read_csv("../data/train.csv")
 
@@ -25,7 +25,7 @@ def load_data(k, shuffle=True):
     # if k is 1 there is no need to split
     if k > 1:
         # uses Stratified KFold and gets splits
-        strat_k_fold = StratifiedKFold(n_splits=k, shuffle=shuffle)
+        strat_k_fold = StratifiedKFold(n_splits=k, shuffle=True)
         splits = strat_k_fold.split(data, targets_raw)
 
         # returns data, targets and splits
