@@ -1,4 +1,5 @@
 from keras.layers import Dense
+from keras.layers import LSTM
 
 # all NNs currently have the same optimizer, loss and epochs
 
@@ -21,10 +22,10 @@ class NeuralNetwork:
         return model_structure
 
 
-# second configuration with:
-# 1 hidden layer of 500 units
-# input shape of (784,)
-class NeuralNetwork2:
+# LSTM configuration with:
+# 1 hidden layer of 32 units
+# input shape of (784, 1)
+class LSTMNetwork:
     optimizer = 'rmsprop'
     loss = 'categorical_crossentropy'
     epochs = 3
@@ -33,7 +34,7 @@ class NeuralNetwork2:
     @staticmethod
     def get_structure():
         model_structure = [
-            Dense(units=500, activation='relu', input_dim=784),
+            LSTM(784, input_shape=(784, 1)),
             Dense(units=10, activation='softmax')
         ]
         return model_structure
