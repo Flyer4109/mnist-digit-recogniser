@@ -95,20 +95,16 @@ def main():
     # checks if thr first argument is a valid model_type
     if args[0] == 'nn':
         if num_args == 3:
-            print('nn, args')
             # cross validate neural network model with args
             cv_k_fold(NeuralNetwork(), int(args[1]), int(args[2]))
         else:
-            print('nn')
             # cross validate neural network model
             cv_k_fold(NeuralNetwork())
     elif args[0] == 'lstm':
         if num_args == 3:
-            print('lstm, args')
             # cross validate LSTM network model with args
             cv_k_fold(LSTMNetwork(), int(args[1]), int(args[2]))
         else:
-            print('lstm')
             # cross validate LSTM network model
             cv_k_fold(LSTMNetwork())
     else:
