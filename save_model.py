@@ -20,7 +20,7 @@ def save(model_info, model_filename):
     model.compile(optimizer=model_info.optimizer, loss=model_info.loss, metrics=['accuracy'])
 
     # trains the model by fitting the data and targets. Configure number of epochs
-    model.fit(data, targets, epochs=model_info.epochs)
+    model.fit(data, targets, epochs=model_info.epochs, batch_size=model_info.batch_size)
 
     # saves the trained model and creates a HDF5 file '<model_name>.h5' at '../models/'
     model.save('../models/' + model_filename + '.h5')
