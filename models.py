@@ -25,8 +25,8 @@ class NeuralNetwork:
 
 
 # LSTM configuration with:
-# 1 hidden layer of 32 units
-# input shape of (784, 1)
+# 1 hidden lstm layer of 256 units
+# input shape of (28, 28)
 class LSTMNetwork:
     optimizer = 'rmsprop'
     loss = 'categorical_crossentropy'
