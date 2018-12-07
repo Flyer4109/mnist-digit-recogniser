@@ -26,6 +26,9 @@ def cv_k_fold(model_info, k=10, verbose=0):
         # store the score of this model
         scores.append(score)
 
+        # print the accuracy metric score
+        print('Fold: ' + str(len(scores)) + ', Accuracy: ' + str(round(score * 100, 3)) + '%')
+
     # calculate the mean score of the all the trained models
     cv_score = float(np.mean(scores) * 100)
     cv_std = float(np.std(scores) * 100)
@@ -47,10 +50,6 @@ def train(model_info, train_data, train_targets, test_data, test_targets, verbos
 
     # evaluate the trained model using test parts
     score = model.evaluate(test_data, test_targets, verbose=verbose)
-
-    if verbose == 1:
-        # print the accuracy metric score
-        print('Accuracy: ' + str(round(score[1]*100, 3)) + '%')
 
     return score[1]
 
