@@ -12,6 +12,7 @@ class NeuralNetwork:
     loss = 'categorical_crossentropy'
     epochs = 10
     input_shape = None
+    batch_size = 64
 
     # function that returns the model structure
     @staticmethod
@@ -31,6 +32,7 @@ class LSTMNetwork:
     loss = 'categorical_crossentropy'
     epochs = 3
     input_shape = (28, 28)
+    batch_size = 64
 
     # function that returns the model structure
     @staticmethod
@@ -50,6 +52,7 @@ class NeuralNetwork3:
     loss = 'categorical_crossentropy'
     epochs = 3
     input_shape = None
+    batch_size = 64
 
     # function that returns the model structure
     @staticmethod
