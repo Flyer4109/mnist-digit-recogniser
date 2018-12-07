@@ -43,7 +43,7 @@ def train(model_info, train_data, train_targets, test_data, test_targets, verbos
     model.compile(optimizer=model_info.optimizer, loss=model_info.loss, metrics=['accuracy'])
 
     # trains the model by fit the train data and targets. configure number of epochs
-    model.fit(train_data, train_targets, epochs=model_info.epochs, verbose=verbose)
+    model.fit(train_data, train_targets, epochs=model_info.epochs, verbose=verbose, batch_size=model.info.batch_size)
 
     # evaluate the trained model using test parts
     score = model.evaluate(test_data, test_targets, verbose=verbose)
