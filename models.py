@@ -30,7 +30,7 @@ class NeuralNetwork:
 class LSTMNetwork:
     optimizer = 'rmsprop'
     loss = 'categorical_crossentropy'
-    epochs = 3
+    epochs = 15
     input_shape = (28, 28)
     batch_size = 64
 
@@ -38,7 +38,7 @@ class LSTMNetwork:
     @staticmethod
     def get_structure():
         model_structure = [
-            LSTM(784, input_shape=LSTMNetwork.input_shape),
+            LSTM(256, input_shape=LSTMNetwork.input_shape),
             Dense(units=10, activation='softmax')
         ]
         return model_structure
