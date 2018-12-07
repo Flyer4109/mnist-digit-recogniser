@@ -1,7 +1,7 @@
 import os
 import sys
 from keras.models import Sequential
-from models import NeuralNetwork
+from models import NeuralNetwork, LSTMNetwork
 from data_helper import load_data, normalise
 
 
@@ -49,10 +49,14 @@ def main():
         # save neural network model with filename as second argument
         save(NeuralNetwork(), sys.argv[2])
         print('File successfully saved at \'../models/' + sys.argv[2] + '.h5\'')
+    elif sys.argv[1] == 'lstm':
+        # save lstm network model with filename as second argument
+        save(LSTMNetwork(), sys.argv[2])
+        print('File successfully saved at \'../models/' + sys.argv[2] + '.h5\'')
     else:
         # first argument is not valid
         # message displays list of possible model_types
-        print('Error, <model_type> was expecting: \'nn\'')
+        print('Error, <model_type> was expecting: \'nn\', \'lstm\'')
         print('Found: \'' + sys.argv[1] + '\'')
 
 
