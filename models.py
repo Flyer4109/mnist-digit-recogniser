@@ -63,13 +63,13 @@ class CNNNetwork:
     def get_structure():
         model_structure = [
             ZeroPadding2D(padding=(2, 2)),
-            Conv2D(6, (5, 5), padding='same', activation='tanh'),
+            Conv2D(6, (5, 5), activation='relu'),
             AveragePooling2D(strides=(2, 2)),
-            Conv2D(16, (5, 5), activation='tanh'),
+            Conv2D(16, (5, 5), activation='relu'),
             AveragePooling2D(strides=(2, 2)),
-            Conv2D(120, (5, 5), activation='tanh'),
+            Conv2D(120, (5, 5), activation='relu'),
             Flatten(),
-            Dense(units=84, activation='tanh'),
+            Dense(units=84, activation='relu'),
             Dense(units=10, activation='softmax')
         ]
         return model_structure
