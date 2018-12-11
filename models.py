@@ -1,5 +1,8 @@
 from keras.layers import Dense
 from keras.layers import LSTM
+from keras.layers import Conv2D
+from keras.layers import ZeroPadding2D
+from keras.layers import AveragePooling2D
 
 # all NNs currently have the same optimizer, loss and epochs
 
@@ -44,22 +47,27 @@ class LSTMNetwork:
         return model_structure
 
 
-# third configuration with:
+# CNN configuration with:
 # 2 hidden layers of 100 units
-# input shape of (784,)
-class NeuralNetwork3:
+# input shape of (28, 28, 1) (rows, cols, channels)
+class CNNNetwork:
     optimizer = 'rmsprop'
     loss = 'categorical_crossentropy'
-    epochs = 3
-    input_shape = None
+    epochs = 10
+    input_shape = (28, 28, 1)
     batch_size = 64
 
     # function that returns the model structure
     @staticmethod
     def get_structure():
         model_structure = [
-            Dense(units=100, activation='relu', input_dim=784),
-            Dense(units=100, activation='relu'),
+            ZeroPadding2D(padding=(2, 2)),
+            Conv2D(6, (5, 5), padding='same', activation='tanh'),
+            AveragePooling2D(strides=(2, 2)),
+            Conv2D(16, (5, 5), activation='tanh'),
+            AveragePooling2D(strides=(2, 2)),
+            Conv2D(120, (5, 5), activation='tanh'),
+            Dense(units=84, activation='tanh'),
             Dense(units=10, activation='softmax')
         ]
         return model_structure
