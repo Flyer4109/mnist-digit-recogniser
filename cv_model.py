@@ -2,7 +2,7 @@ import sys
 import numpy as np
 from keras.models import Sequential
 from data_helper import load_data, split_data_targets
-from models import NeuralNetwork, LSTMNetwork, NeuralNetwork3
+from models import NeuralNetwork, LSTMNetwork, CNNNetwork
 
 
 # function that uses k-fold cross validation to evaluate a model
@@ -106,10 +106,17 @@ def main():
         else:
             # cross validate LSTM network model
             cv_k_fold(LSTMNetwork())
+    elif args[0] == 'cnn':
+        if num_args == 3:
+            # cross validate CNN network model with args
+            cv_k_fold(CNNNetwork(), int(args[1]), int(args[2]))
+        else:
+            # cross validate CNN network model
+            cv_k_fold(CNNNetwork())
     else:
         # first argument is not valid
         # message displays list of possible model_types
-        print('Error, <model_type> was expecting: \'nn\', \'lstm\'')
+        print('Error, <model_type> was expecting: \'nn\', \'lstm\', \'cnn\'')
         print('Found: \'' + args[0] + '\'')
 
 
