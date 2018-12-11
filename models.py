@@ -49,7 +49,7 @@ class LSTMNetwork:
 
 
 # CNN configuration with:
-# 2 hidden layers of 100 units
+# LeNet-5 architecture 1998 was used
 # input shape of (28, 28, 1) (rows, cols, channels)
 class CNNNetwork:
     optimizer = 'rmsprop'
