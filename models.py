@@ -3,6 +3,7 @@ from keras.layers import LSTM
 from keras.layers import Conv2D
 from keras.layers import ZeroPadding2D
 from keras.layers import AveragePooling2D
+from keras.layers import Flatten
 
 # all NNs currently have the same optimizer, loss and epochs
 
@@ -67,6 +68,7 @@ class CNNNetwork:
             Conv2D(16, (5, 5), activation='tanh'),
             AveragePooling2D(strides=(2, 2)),
             Conv2D(120, (5, 5), activation='tanh'),
+            Flatten(),
             Dense(units=84, activation='tanh'),
             Dense(units=10, activation='softmax')
         ]
