@@ -60,7 +60,7 @@ def main():
     else:
         # first argument is not valid
         # message displays list of possible model_types
-        print('Error, <model_type> was expecting: \'nn\', \'lstm\'')
+        print('Error, <model_type> was expecting: \'nn\', \'lstm\', \'cnn\'')
         print('Found: \'' + sys.argv[1] + '\'')
 
 
