@@ -54,7 +54,7 @@ class LSTMNetwork:
 class CNNNetwork:
     optimizer = 'rmsprop'
     loss = 'categorical_crossentropy'
-    epochs = 10
+    epochs = 30
     input_shape = (28, 28, 1)
     batch_size = 64
 
