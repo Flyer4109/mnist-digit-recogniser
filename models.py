@@ -73,3 +73,30 @@ class CNNNetwork:
             Dense(units=10, activation='softmax')
         ]
         return model_structure
+
+
+# CNN configuration with:
+# LeNet-5 1998 inspired architecture was used
+# input shape of (28, 28, 1) (rows, cols, channels)
+class CNNNetwork2:
+    optimizer = 'rmsprop'
+    loss = 'categorical_crossentropy'
+    epochs = 40
+    input_shape = (28, 28, 1)
+    batch_size = 64
+
+    # function that returns the model structure
+    @staticmethod
+    def get_structure():
+        model_structure = [
+            ZeroPadding2D(padding=(2, 2)),
+            Conv2D(64, (5, 5), activation='relu'),
+            AveragePooling2D(strides=(2, 2)),
+            Conv2D(64, (5, 5), activation='relu'),
+            AveragePooling2D(strides=(2, 2)),
+            Conv2D(240, (5, 5), activation='relu'),
+            Flatten(),
+            Dense(units=100, activation='relu'),
+            Dense(units=10, activation='softmax')
+        ]
+        return model_structure
