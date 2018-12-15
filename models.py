@@ -1,9 +1,4 @@
-from keras.layers import Dense
-from keras.layers import LSTM
-from keras.layers import Conv2D
-from keras.layers import ZeroPadding2D
-from keras.layers import AveragePooling2D
-from keras.layers import Flatten
+from keras.layers import Dense, LSTM, Conv2D, ZeroPadding2D, AveragePooling2D, Flatten
 
 # all NNs currently have the same optimizer, loss and epochs
 
