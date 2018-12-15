@@ -1,7 +1,7 @@
 import os
 import sys
 from keras.models import Sequential
-from models import NeuralNetwork, LSTMNetwork, CNNNetwork
+from models import NeuralNetwork, LSTMNetwork, CNNNetwork, CNNNetwork2
 from data_helper import load_data, normalise
 
 
@@ -56,6 +56,10 @@ def main():
     elif sys.argv[1] == 'cnn':
         # save cnn network model with filename as second argument
         save(CNNNetwork(), sys.argv[2])
+        print('File successfully saved at \'../models/' + sys.argv[2] + '.h5\'')
+    elif sys.argv[1] == 'cnn2':
+        # save cnn network model with filename as second argument
+        save(CNNNetwork2(), sys.argv[2])
         print('File successfully saved at \'../models/' + sys.argv[2] + '.h5\'')
     else:
         # first argument is not valid
