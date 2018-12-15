@@ -2,7 +2,7 @@ import sys
 import numpy as np
 from keras.models import Sequential
 from data_helper import load_data, split_data_targets
-from models import NeuralNetwork, LSTMNetwork, CNNNetwork
+from models import NeuralNetwork, LSTMNetwork, CNNNetwork, CNNNetwork2
 
 
 # function that uses k-fold cross validation to evaluate a model
@@ -113,6 +113,13 @@ def main():
         else:
             # cross validate CNN network model
             cv_k_fold(CNNNetwork())
+    elif args[0] == 'cnn2':
+        if num_args == 3:
+            # cross validate CNN network model with args
+            cv_k_fold(CNNNetwork2(), int(args[1]), int(args[2]))
+        else:
+            # cross validate CNN network model
+            cv_k_fold(CNNNetwork2())
     else:
         # first argument is not valid
         # message displays list of possible model_types
