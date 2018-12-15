@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 from keras.models import load_model
 from data_helper import load_data, normalise
-from models import NeuralNetwork, LSTMNetwork, CNNNetwork
+from models import NeuralNetwork, LSTMNetwork, CNNNetwork, CNNNetwork2
 
 
 # function to create submission csv file
@@ -65,6 +65,10 @@ def main():
         submit(LSTMNetwork(), sys.argv[2])
         print('File successfully saved at \'../submissions/' + sys.argv[2] + '.csv\'')
     elif sys.argv[1] == 'cnn':
+        # create submission csv for cnn network model with given .h5 file
+        submit(CNNNetwork(), sys.argv[2])
+        print('File successfully saved at \'../submissions/' + sys.argv[2] + '.csv\'')
+    elif sys.argv[1] == 'cnn2':
         # create submission csv for cnn network model with given .h5 file
         submit(CNNNetwork(), sys.argv[2])
         print('File successfully saved at \'../submissions/' + sys.argv[2] + '.csv\'')
