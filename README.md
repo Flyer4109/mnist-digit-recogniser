@@ -82,7 +82,7 @@ To use this script you must pass 2 arguments as shown below:
 
 ***
 
-##Full list of dependencies
+## Full list of dependencies
 
 * absl-py             0.6.1  
 * astor               0.7.1  
