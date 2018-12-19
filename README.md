@@ -1,6 +1,20 @@
 # Mnist-digit-recogniser
 This is a project for the [digit recognition](https://www.kaggle.com/c/digit-recognizer) kaggle competition that
-uses the mnist 28x28 image data set. This project was run using Python 3.6.6.
+uses the mnist 28x28 image data set.
+
+This project was run using Python 3.6.6.
+
+Data can be downloaded from
+[here](https://www.kaggle.com/c/digit-recognizer/data) and is assumed to be in ../data/.
+
+Dependencies inlcude:
+* tensorflow 1.12.0
+* keras 2.2.4
+* pandas 0.23.4
+* numpy 1.15.4
+* scikit-learn 0.20.1
+
+A full list of dependencies can be seen at the bottom of this file incase I've missed one out.
 
 There are 3 runnable python scripts available:
 * `cv_model.py`
@@ -65,3 +79,36 @@ To use this script you must pass 2 arguments as shown below:
 **_INFO_** --- models are read from ../models/
 
 **_INFO_** --- submissions are saved in ../submissions/
+
+***
+
+##Full list of dependencies
+
+* absl-py             0.6.1  
+* astor               0.7.1  
+* cycler              0.10.0
+* gast                0.2.0  
+* grpcio              1.16.0 
+* h5py                2.8.0  
+* Keras               2.2.4  
+* Keras-Applications  1.0.6  
+* Keras-Preprocessing 1.0.5  
+* kiwisolver          1.0.1  
+* Markdown            3.0.1  
+* numpy               1.15.4 
+* pandas              0.23.4 
+* pip                 18.1   
+* protobuf            3.6.1  
+* pyparsing           2.3.0  
+* python-dateutil     2.7.5  
+* pytz                2018.7 
+* PyYAML              3.13   
+* scikit-learn        0.20.1 
+* scipy               1.1.0  
+* setuptools          39.0.1 
+* six                 1.11.0 
+* tensorboard         1.12.0 
+* tensorflow          1.12.0 
+* termcolor           1.1.0  
+* Werkzeug            0.14.1 
+* wheel               0.32.2
