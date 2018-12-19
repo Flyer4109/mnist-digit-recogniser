@@ -15,6 +15,8 @@ There are 4 different models available:
 
 You can see these in `models.py`.
 
+***
+
 ## `cv_model.py`
 This script uses K-Fold Stratified Cross Validation (CV) to train and evaluate a given model. This script outputs
 the score of each fold and then the final score which is the mean of all K folds.
@@ -24,8 +26,6 @@ To use this script you must pass 1 or 3 arguments as shown below:
 `python cv_model.py <model_type>`
 
 `python cv_model.py <model_type> <n_splits> <verbose>`
-
-***
 
 `model_type`: string which accepts model codes as mentioned above. `nn`/`lstm`/`cnn`/`cnn2`
 
@@ -40,8 +40,6 @@ To use this script you must pass 2 arguments as shown below:
 
 `python cv_model.py <model_type> <model_name>`
 
-***
-
 `model_type`: string which accepts model codes as mentioned above. `nn`/`lstm`/`cnn`/`cnn2`
 
 `model_name`: name of the file. For example: neural_network_1 is saved as neural_network_1.h5.
@@ -49,14 +47,14 @@ To use this script you must pass 2 arguments as shown below:
 
 **_INFO_** --- models are saved in ../models/
 
+***
+
 ## `submit_model.py`
 This script generates a csv file ready for submission by using a given saved model in an h5 file.
 
 To use this script you must pass 2 arguments as shown below:
 
 `python cv_model.py <model_type> <model_file>`
-
-***
 
 `model_type`: string which accepts model codes as mentioned above. `nn`/`lstm`/`cnn`/`cnn2`
 
