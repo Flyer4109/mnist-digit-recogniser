@@ -33,6 +33,8 @@ To use this script you must pass 1 or 3 arguments as shown below:
  
 `verbose`: 1 for on, 0 for off. Default value is 0.
 
+***
+
 ## `save_model.py`
 This script finalises a given model by training it using **all** of the data set and then saves it in an h5 file.
 
