@@ -22,6 +22,7 @@ There are 3 runnable python scripts available:
 * `submit_model.py`
 
 There are 4 different models available:
+
 | model code | model type | model score |
 | --- | --- | --- |
 | `nn` | Neural Network (NN) | 0.96714 |
