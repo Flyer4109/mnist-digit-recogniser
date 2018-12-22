@@ -7,14 +7,14 @@ This project was run using Python 3.6.6.
 Data can be downloaded from
 [here](https://www.kaggle.com/c/digit-recognizer/data) and is assumed to be in ../data/.
 
-Dependencies inlcude:
+Dependencies include:
 * tensorflow 1.12.0
 * keras 2.2.4
 * pandas 0.23.4
 * numpy 1.15.4
 * scikit-learn 0.20.1
 
-A full list of dependencies can be seen at the bottom of this file incase I've missed one out.
+A full list of dependencies can be seen at the bottom of this file in case I've missed one out.
 
 There are 3 runnable python scripts available:
 * `cv_model.py`
