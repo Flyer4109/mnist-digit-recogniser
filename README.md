@@ -24,7 +24,7 @@ There are 3 runnable python scripts available:
 There are 4 different models available:
 
 | model code | model type | model score |
-| --- | --- | --- |
+| :---: | --- | :---: |
 | `nn` | Neural Network (NN) | 0.96714 |
 | `lstm` | Long Short-Term Memory (LSTM) Network | 0.98828 |
 | `cnn` | Convolutional Neural Network (CNN) | 0.98871 |
