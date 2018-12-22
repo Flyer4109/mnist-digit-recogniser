@@ -22,10 +22,12 @@ There are 3 runnable python scripts available:
 * `submit_model.py`
 
 There are 4 different models available:
-* `nn` Neural Network (NN)
-* `lstm` Long Short-Term Memory (LSTM) Network
-* `cnn` Convolutional Neural Network (CNN)
-* `cnn2` CNN
+| model code | model type | model score |
+| --- | --- | --- |
+| `nn` | Neural Network (NN) | 0.96714 |
+| `lstm` | Long Short-Term Memory (LSTM) Network | 0.98828 |
+| `cnn` | Convolutional Neural Network (CNN) | 0.98871 |
+| `cnn2` | CNN | 0.99042 |
 
 You can see these in `models.py`.
 
